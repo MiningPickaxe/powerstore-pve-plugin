@@ -1,0 +1,24 @@
+#!/bin/sh
+# prerm — back up storage.cfg before removal so entries are not lost
+set -e
+
+BACKUP_DIR=/var/backups/powerstore-pve-plugin
+STORAGE_CFG=/etc/pve/storage.cfg
+
+case "$1" in
+    remove|upgrade|deconfigure)
+        if [ -f "$STORAGE_CFG" ]; then
+            mkdir -p "$BACKUP_DIR"
+            cp "$STORAGE_CFG" "$BACKUP_DIR/storage.cfg.$(date +%Y%m%d%H%M%S).bak"
+            echo "PowerStore PVE Plugin: backed up storage.cfg to $BACKUP_DIR"
+        fi
+        ;;
+    failed-upgrade)
+        ;;
+    *)
+        echo "prerm called with unknown argument '$1'" >&2
+        ;;
+esac
+
+#DEBHELPER#
+exit 0

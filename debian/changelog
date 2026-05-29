@@ -1,0 +1,12 @@
+powerstore-pve-plugin (1.0.0) stable; urgency=low
+
+  * Initial release.
+  * iSCSI block storage integration with Dell PowerStore appliances.
+  * Full volume lifecycle: create, delete, resize.
+  * Appliance-layer snapshots and rollback.
+  * Volume cloning via PowerStore CoW clone API.
+  * Per-node iSCSI host auto-registration.
+  * CHAP authentication support.
+  * Debian packaging.
+
+ -- PowerStore PVE Plugin Contributors <noreply@example.com>  Thu, 29 May 2026 00:00:00 +0000

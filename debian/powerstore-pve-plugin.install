@@ -1,0 +1,3 @@
+PowerStorePlugin.pm usr/share/perl5/PVE/Storage/Custom/
+install.sh usr/share/powerstore-pve-plugin/
+storage.cfg.example usr/share/doc/powerstore-pve-plugin/

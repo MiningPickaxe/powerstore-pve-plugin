@@ -1,0 +1,27 @@
+Source: powerstore-pve-plugin
+Section: admin
+Priority: optional
+Maintainer: PowerStore PVE Plugin Contributors <https://github.com/powerstore-pve-plugin>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/powerstore-pve-plugin/powerstore-pve-plugin
+Rules-Requires-Root: no
+
+Package: powerstore-pve-plugin
+Architecture: all
+Depends: ${misc:Depends},
+         pve-manager (>= 8.0),
+         libwww-perl,
+         liblwp-protocol-https-perl,
+         libjson-perl,
+         libio-socket-ssl-perl,
+         open-iscsi
+Recommends: multipath-tools
+Description: Proxmox VE storage plugin for Dell PowerStore
+ Provides native iSCSI block storage integration between Proxmox VE clusters
+ and Dell PowerStore appliances. Volumes are created on-demand via the
+ PowerStore REST API and presented as raw block devices.
+ .
+ Features include per-node host registration, volume lifecycle management,
+ appliance-layer snapshots, volume cloning, snapshot rollback, and CHAP
+ authentication support.

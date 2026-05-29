@@ -1,0 +1,55 @@
+# PowerStore PVE Plugin — storage.cfg examples
+#
+# Add entries like these to /etc/pve/storage.cfg on any Proxmox VE node.
+# (The Proxmox web UI can also add/edit storage entries under
+#  Datacenter → Storage → Add → PowerStore Plugin.)
+#
+# After adding an entry, run:
+#   pvesm status --storage <storageid>
+# to verify the storage is accessible.
+
+# ---------------------------------------------------------------------------
+# Minimal required configuration (iSCSI)
+# ---------------------------------------------------------------------------
+#
+# powerstoreplugin: ps-prod
+#         api_host        192.168.10.50
+#         api_password    MySecretPassword
+#         pool_id         <UUID of PowerStore storage pool>
+#         portal          192.168.10.51
+#         content         images
+
+# ---------------------------------------------------------------------------
+# Full configuration — all options documented
+# ---------------------------------------------------------------------------
+#
+# powerstoreplugin: ps-prod
+#
+#         # --- Required ---
+#         api_host        192.168.10.50       # PowerStore management IP / hostname
+#         api_password    MySecretPassword    # Management user password
+#         pool_id         a1b2c3d4-e5f6-...  # Storage pool UUID (GET /api/rest/storage_pool)
+#
+#         # --- Recommended ---
+#         portal          192.168.10.51       # iSCSI discovery portal IP
+#                                             # (defaults to api_host if omitted)
+#
+#         # --- Optional with defaults ---
+#         api_user        admin               # Management username  (default: admin)
+#         api_port        443                 # HTTPS API port       (default: 443)
+#         api_insecure    0                   # Skip TLS verify      (default: 0)
+#         transport_mode  iscsi               # Transport protocol   (default: iscsi)
+#         host_name_prefix pve-              # Prefix for auto-created Host entries
+#         debug           0                   # Verbosity 0/1/2      (default: 0)
+#
+#         # --- CHAP authentication (optional) ---
+#         chap_user       chapuser
+#         chap_password   chapSecret123
+#
+#         # --- Quality of Service (optional) ---
+#         performance_policy_id  <UUID>       # PowerStore performance policy ID
+#
+#         # --- Standard PVE storage options ---
+#         content         images
+#         shared          1                   # Mark storage as shared across nodes
+#         nodes           node1,node2         # Restrict to specific nodes (omit = all)

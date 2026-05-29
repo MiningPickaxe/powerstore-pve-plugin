@@ -1,0 +1,21 @@
+#!/bin/sh
+# postrm — clean up after removal
+set -e
+
+case "$1" in
+    purge)
+        BACKUP_DIR=/var/backups/powerstore-pve-plugin
+        if [ -d "$BACKUP_DIR" ]; then
+            rm -rf "$BACKUP_DIR"
+            echo "PowerStore PVE Plugin: removed backup directory $BACKUP_DIR"
+        fi
+        ;;
+    remove|upgrade|disappear|failed-upgrade|abort-install|abort-upgrade)
+        ;;
+    *)
+        echo "postrm called with unknown argument '$1'" >&2
+        ;;
+esac
+
+#DEBHELPER#
+exit 0

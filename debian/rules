@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# Nothing to build — pure Perl
+
+override_dh_auto_test:
+	perl -c PowerStorePlugin.pm
+
+override_dh_auto_install:
+	install -D -m 0644 PowerStorePlugin.pm \
+		debian/powerstore-pve-plugin/usr/share/perl5/PVE/Storage/Custom/PowerStorePlugin.pm
+	install -D -m 0755 install.sh \
+		debian/powerstore-pve-plugin/usr/share/powerstore-pve-plugin/install.sh
+	install -D -m 0644 storage.cfg.example \
+		debian/powerstore-pve-plugin/usr/share/doc/powerstore-pve-plugin/storage.cfg.example

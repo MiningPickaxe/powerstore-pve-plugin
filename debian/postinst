@@ -1,0 +1,24 @@
+#!/bin/sh
+# postinst — restart Proxmox services after plugin installation
+set -e
+
+case "$1" in
+    configure)
+        echo "PowerStore PVE Plugin installed. Restarting Proxmox services..."
+        if systemctl is-active --quiet pvedaemon 2>/dev/null; then
+            systemctl restart pvedaemon || true
+        fi
+        if systemctl is-active --quiet pvestatd 2>/dev/null; then
+            systemctl restart pvestatd || true
+        fi
+        echo "Done. Add a storage entry with: pvesm add powerstoreplugin <id> ..."
+        ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+        ;;
+    *)
+        echo "postinst called with unknown argument '$1'" >&2
+        ;;
+esac
+
+#DEBHELPER#
+exit 0

@@ -1,4 +1,19 @@
-!Build/
+# Build artifacts
+*.deb
+*.changes
+*.buildinfo
+*.dsc
+*.tar.*
+/build/
+SHA256SUMS
+
+# Debian build temp
+debian/.debhelper/
+debian/powerstore-pve-plugin/
+debian/files
+debian/debhelper-build-stamp
+
+# Perl toolchain
 .last_cover_stats
 /META.yml
 /META.json
@@ -6,18 +21,21 @@
 *.o
 *.pm.tdy
 *.bs
-
-# Devel::Cover
 cover_db/
-
-# Devel::NYTProf
 nytprof.out
-
-# Dist::Zilla
 /.build/
-
-# Module::Build
 _build/
+
+# Editor / OS
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+/tools/test-results/
+/tools/*.log
 Build
 Build.bat
 
